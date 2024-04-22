@@ -1,0 +1,3 @@
+Java21
+Springboot3
+Springsecurity6
