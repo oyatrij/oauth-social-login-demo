@@ -1,6 +1,5 @@
 package com.oyatrij.springoauthsociallogin.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ResolvableType;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class BaseController {
     @GetMapping("/")
