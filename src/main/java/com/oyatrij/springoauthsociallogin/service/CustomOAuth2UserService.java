@@ -43,11 +43,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .getUserNameAttributeName();
 
         String email;
+        String name;
         Map<String, Object> response = oAuth2User.getAttributes();
 
         if(registrationId.equals("naver")) {
             Map<String, Object> hash = (Map<String, Object>) response.get("response");
             email = (String)hash.get("email");
+            name = (String)hash.get("name");
         } else if(registrationId.equals("google")) {
             email = (String) response.get("email");
         } else {
@@ -61,7 +63,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             user = optionalUser.get();
         }else{
             user = new User();
-            user.setEmail("email");
+            user.setEmail(email);
             user.setRole(Role.ROLE_USER);
             userRepository.save(user);
         }

@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +29,7 @@ public class BaseController {
 
     Map<String, String> oauth2AuthenticationUrls = new HashMap<>();
     private final ClientRegistrationRepository clientRegistrationRepository;
-    // Lombok 아닌 경우 (@RequiredArgsConstructor 없는 경우)
-    // @Autowired private ClientRegistrationRepository clientRegistrationRepository;
-    @SuppressWarnings("unchecked")
+
     @GetMapping("/login")
     public String getLoginPage(Model model) throws Exception {
         Iterable<ClientRegistration> clientRegistrations = null;
@@ -47,5 +46,10 @@ public class BaseController {
         model.addAttribute("urls", oauth2AuthenticationUrls);
 
         return "login";
+    }
+
+    @RequestMapping("/accessDenied")
+    public String accessDenied() {
+        return "accessDenied";
     }
 }
